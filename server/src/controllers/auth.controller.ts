@@ -8,9 +8,9 @@ import { SendOtp } from "../middleware/email";
 
 export const signup=async(req:Request,res:Response)=>{
     try {
-        const {email,dob}=req.body;
+        const {name,email,dob}=req.body;
 
-        if(!email || !dob){
+        if(!name || !email || !dob){
             return res.status(400).json({message:"all fields are required"})
         }
 
@@ -28,6 +28,7 @@ export const signup=async(req:Request,res:Response)=>{
         //if the user is new add it to db
          //new user 
         const newUser=new User({
+            name:name,
             email:email,
             dob:dob,
             otp:otp,
@@ -47,6 +48,7 @@ export const signup=async(req:Request,res:Response)=>{
             //
             res.status(201).json({
                 _id:newUser._id,
+                name:name,
                 email:newUser.email,
                 dob:newUser.dob,
                 // otp:newUser.otp,
