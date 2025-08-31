@@ -5,7 +5,7 @@ import { transporter } from "./email.config";
 export const SendOtp=async (email: string, otp: string): Promise<void> =>{
     try {
     const response = await transporter.sendMail({
-    from: `"Notes App" <${process.env.EMAIL_ID}>`,
+    from: `"Notes App" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "OTP for the notes app",
     text: `Your OTP is ${otp}`, // plain‑text body
