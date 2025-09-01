@@ -29,17 +29,16 @@ app.use(
 
 connectDb()
 const PORT=process.env.PORT || 8000
-const __dirname=path.resolve() 
 
 app.use('/api/auth',AuthRoutes)
 app.use("/api/notes", NotesRoutes);
 
 //
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.use(express.static(path.join(process.cwd(), "client/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+    res.sendFile(path.join(process.cwd(), "client", "dist", "index.html"));
   });
 }
 
