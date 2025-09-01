@@ -5,6 +5,7 @@ import { useAuthStore } from "./store/authStore";
 import type { JSX } from "react";
 import Dashboard from "./pages/Dashboard";
 
+
 function ProtectedRoute({ children }: { children: JSX.Element }) {
   const { isLoggedIn } = useAuthStore();
   if (!isLoggedIn) return <Navigate to="/signup" replace />;
@@ -23,7 +24,7 @@ function App() {
         path="/notes"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <Dashboard/>
           </ProtectedRoute>
         }
       />

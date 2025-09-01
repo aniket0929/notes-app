@@ -70,16 +70,28 @@ export const signup=async(req:Request,res:Response)=>{
 
 
 
+
+
+
 export const verifyOtp = async (req: Request, res: Response) => {
   try {
-    const { email, otp } = req.body;
-    if (!email || !otp) return res.status(400).json({ message: "Email and OTP are required" });
+    const { email, otp, rememberMe } = req.body; // Include rememberMe
+    if (!email || !otp) {
+      return res.status(400).json({ message: "Missing email or OTP" });
+    }
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    if (user.otp !== otp) return res.status(400).json({ message: "Invalid OTP" });
-    if (!user.otpExpiry || user.otpExpiry < new Date()) return res.status(400).json({ message: "OTP expired" });
+    if (user.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    if (!user.otpExpiry || user.otpExpiry < new Date()) {
+      return res.status(400).json({ message: "OTP expired" });
+    }
 
     // Mark user verified
     user.isVerified = true;
@@ -87,13 +99,15 @@ export const verifyOtp = async (req: Request, res: Response) => {
     user.otpExpiry = undefined;
     await user.save();
 
-    // Generate JWT
-    generateToken(user._id, res);
+    // Generate JWT with extended expiry if rememberMe is true
+    const expiry = rememberMe ? "30d" : "7d"; // Example: 30 days if rememberMe, otherwise 7 days
+    generateToken(user._id, res, expiry);
 
     res.status(200).json({
       message: "OTP verified successfully",
       _id: user._id,
       email: user.email,
+      name: user.name,
     });
   } catch (error) {
     console.error("OTP verification error:", error);
