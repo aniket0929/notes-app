@@ -92,6 +92,7 @@ root
  ┗ package.json
 
 ```
+---
 ## ⚙️ Setup Instructions
 
 ### 1️⃣ Clone the Repository
@@ -99,3 +100,40 @@ root
 git clone https://github.com/yourusername/note-taking-app.git
 cd note-taking-app
 ```
+
+### 2️⃣ Setup Backend
+```bash
+cd server
+npm install
+```
+
+### Create a .env file inside server/:
+```bash
+PORT=Your Port Number
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_app_password
+NODE_ENV=development
+
+```
+
+### Run the backend:
+```bash
+npm run dev
+```
+
+### 3️⃣ Setup Frontend
+```bash
+cd .../client
+npm install
+```
+
+### Run the frontend:
+```bash
+npm run dev
+```
+---
+
+
+
