@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm ci --prefix server && npm ci --prefix client && npm run build --prefix server && npm run build --prefix client",
+    "build:local": "npm install --prefix server && npm install --prefix client && npm run build --prefix server && npm run build --prefix client",
     "start": "npm run start --prefix server",
     "dev": "npm run dev --prefix server"
   },
