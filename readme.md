@@ -90,3 +90,12 @@ root
  ┣ .env.example     # Example environment variables
  ┣ README.md
  ┗ package.json
+
+```
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/note-taking-app.git
+cd note-taking-app
+```
