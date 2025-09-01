@@ -133,7 +133,20 @@ npm install
 ```bash
 npm run dev
 ```
+
+### 🚀 Deployment  
+- Frontend → Render
+- Backend → Render  
+- Database → MongoDB Atlas
+- 🔗 App URL: https://notes-app-50v1.onrender.com  
+
 ---
+
+### 🔮 Future Scope
+- 👥 Multi-user collaboration → Multiple users can edit a shared note in real-time.
+- 🔗 Sharable Note Links → Public/private sharable links for notes.  
+- 🤖 AI Note Summary → Automatic AI-powered summarization of notes.
+
 
 
 
