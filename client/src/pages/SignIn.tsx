@@ -80,7 +80,7 @@ export default function Signin() {
             Sign In
           </h2>
           <p className="text-gray-500 text-base lg:text-lg mb-6 text-center lg:text-left">
-            Please login to continie to your account
+            Please login to continue to your account
           </p>
 
           {!otpSent && (
