@@ -80,19 +80,32 @@ export default function Signin() {
             Sign In
           </h2>
           <p className="text-gray-500 text-base lg:text-lg mb-6 text-center lg:text-left">
-            Sign in to your account
+            Please login to continie to your account
           </p>
 
           {!otpSent && (
             <form onSubmit={handleSendOtp} className="space-y-4">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:border-blue-600 outline-none"
-                required
-              />
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`w-full p-3 border border-gray-300 rounded-lg focus:border-blue-600 outline-none peer`}
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className={`absolute left-3 text-gray-600 transition-all bg-white px-1`}
+                  style={{
+                    top: email ? "-12px" : "12px",
+                    fontSize: email ? "12px" : "16px",
+                    color: email ? "#2563eb" : "#4b5563",
+                  }}
+                >
+                  Email
+                </label>
+              </div>
               <button
                 type="submit"
                 className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition"
@@ -107,12 +120,23 @@ export default function Signin() {
               <div className="relative">
                 <input
                   type={showOtp ? "text" : "password"}
-                  placeholder="Enter OTP"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-600 outline-none"
+                  id="otp"
+                  className={`w-full p-3 border border-gray-300 rounded-lg focus:border-blue-600 outline-none peer`}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   disabled={timer === "OTP expired"}
                 />
+                <label
+                  htmlFor="otp"
+                  className={`absolute left-3 text-gray-600 transition-all bg-white px-1`}
+                  style={{
+                    top: otp ? "-12px" : "12px",
+                    fontSize: otp ? "12px" : "16px",
+                    color: otp ? "#2563eb" : "#4b5563",
+                  }}
+                >
+                  OTP
+                </label>
                 <span
                   className="absolute right-3 top-3 cursor-pointer text-gray-600"
                   onClick={() => setShowOtp(!showOtp)}
@@ -166,12 +190,12 @@ export default function Signin() {
           {error && <p className="text-red-500 mt-2 text-center lg:text-left">{error}</p>}
 
           <p className="mt-4 text-sm text-gray-600 text-center">
-            Don’t have an account?{" "}
+           Need an account?{" "}
             <span
               className="text-blue-600 font-semibold cursor-pointer"
               onClick={() => navigate("/signup")}
             >
-              Sign Up
+              Create One
             </span>
           </p>
         </div>
